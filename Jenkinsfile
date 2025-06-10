@@ -1,47 +1,43 @@
 pipeline {
-  agent any
+    agent any
 
-  environment {
-    // Ajusta la ruta si docker compose no está en PATH estándar de Jenkins
-    PATH = "${env.PATH}:/usr/local/bin"
-  }
+    environment {
+        PROJECT_DIR = "/home/orlando/quellkasten-project"
+        SERVICE_NAME = "web-portfolio"
+    }
 
-  stages {
-    stage('Check Docker Environment') {
-      steps {
-        script {
-          echo "Verificando Docker y Docker Compose..."
+    stages {
+        stage('Verificar herramientas') {
+            steps {
+                sh '''
+                    echo "Verificando Docker y Docker Compose..."
+                    docker --version || (echo "Docker no está instalado" && exit 1)
+                    docker compose version || (echo "Docker Compose no está disponible" && exit 1)
+                '''
+            }
         }
-        sh 'docker --version'
-        sh 'docker compose version || echo "docker compose no disponible"'
-        sh 'docker-compose --version || echo "docker-compose no disponible"'
-        sh 'which docker'
-        sh 'which docker-compose'
-        sh 'which docker-compose || which docker-compose || echo "No se encontró docker-compose"'
-      }
-    }
 
-    stage('Checkout Source Code') {
-      steps {
-        checkout scm
-      }
-    }
+        stage('Deploy: web-portfolio') {
+            steps {
+                dir("${env.PROJECT_DIR}") {
+                    sh '''
+                        echo "Construyendo la imagen de ${SERVICE_NAME}..."
+                        docker compose build ${SERVICE_NAME}
 
-    stage('Build and Deploy web-porfolio') {
-      steps {
-        script {
-          try {
-            sh '''
-              echo "Construyendo la imagen de web-porfolio"
-              docker compose build web-porfolio
-              echo "Levantando el contenedor de web-porfolio"
-              docker compose up -d web-porfolio
-            '''
-          } catch (err) {
-            error "Error durante build/deploy: ${err}"
-          }
+                        echo "Reiniciando el contenedor de ${SERVICE_NAME}..."
+                        docker compose up -d ${SERVICE_NAME}
+                    '''
+                }
+            }
         }
-      }
     }
-  }
+
+    post {
+        success {
+            echo "✅ Despliegue completado exitosamente."
+        }
+        failure {
+            echo "❌ Falló el despliegue. Revisa los logs."
+        }
+    }
 }
