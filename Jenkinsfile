@@ -1,12 +1,14 @@
 pipeline {
     agent any
 
-    environment {
-        PROJECT_DIR = "/home/orlando/quellkasten-project"
-        SERVICE_NAME = "web-portfolio"
-    }
-
     stages {
+        stage('Checkout') {
+            steps {
+                // Clona el repositorio en el workspace actual
+                checkout scm
+            }
+        }
+
         stage('Verificar herramientas') {
             steps {
                 sh '''
@@ -17,15 +19,15 @@ pipeline {
             }
         }
 
-        stage('Deploy: web-portfolio') {
+        stage('Construir y desplegar') {
             steps {
-                dir("${env.PROJECT_DIR}") {
+                dir('quellkasten-project') {   // Aquí la carpeta de tu proyecto dentro del repo
                     sh '''
-                        echo "Construyendo la imagen de ${SERVICE_NAME}..."
-                        docker compose build ${SERVICE_NAME}
+                        echo "Construyendo la imagen docker..."
+                        docker compose build web-portfolio
 
-                        echo "Reiniciando el contenedor de ${SERVICE_NAME}..."
-                        docker compose up -d ${SERVICE_NAME}
+                        echo "Reiniciando el contenedor..."
+                        docker compose up -d web-portfolio
                     '''
                 }
             }
