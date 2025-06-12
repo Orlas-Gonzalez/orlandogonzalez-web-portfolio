@@ -26,6 +26,9 @@ pipeline {
                         echo "Construyendo la imagen docker..."
                         docker compose build web-portfolio
 
+                        echo "Eliminando contenedor existente si existe..."
+                        docker rm -f web-porfolio-service || echo "No existía el contenedor web-porfolio-service"
+
                         echo "Reiniciando el contenedor..."
                         docker compose up -d web-portfolio
                     '''
