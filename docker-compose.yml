@@ -5,3 +5,9 @@ services:
       dockerfile: Dockerfile
     container_name: web-porfolio-service
     restart: unless-stopped
+    networks:
+      - quellkasten_web
+
+networks:
+  quellkasten_web:
+    external: true
