@@ -1,0 +1,7 @@
+services:
+  web-portfolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: web-porfolio-service
+    restart: unless-stopped
