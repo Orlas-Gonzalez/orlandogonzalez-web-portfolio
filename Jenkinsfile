@@ -20,18 +20,17 @@ pipeline {
 
         stage('Construir y desplegar') {
             steps {
-                dir('quellkasten-project') {
-                    sh '''
-                        echo "Construyendo la imagen docker..."
-                        docker compose -f docker-compose.github.yml build web-portfolio
+                // Aquí quitamos el 'dir' si el archivo está en raíz
+                sh '''
+                    echo "Construyendo la imagen docker..."
+                    docker compose -f docker-compose.github.yml build web-portfolio
 
-                        echo "Eliminando contenedor existente si existe..."
-                        docker rm -f web-porfolio-service || echo "No existía el contenedor web-porfolio-service"
+                    echo "Eliminando contenedor existente si existe..."
+                    docker rm -f web-porfolio-service || echo "No existía el contenedor web-porfolio-service"
 
-                        echo "Reiniciando el contenedor..."
-                        docker compose -f docker-compose.github.yml up -d web-portfolio
-                    '''
-                }
+                    echo "Reiniciando el contenedor..."
+                    docker compose -f docker-compose.github.yml up -d web-portfolio
+                '''
             }
         }
     }
