@@ -18,27 +18,18 @@ pipeline {
             }
         }
 
-        stage('Configurar red externa') {
-            steps {
-                sh '''
-                    echo "Creando red docker externa quellkasten_web si no existe..."
-                    docker network inspect quellkasten_web > /dev/null 2>&1 || docker network create quellkasten_web
-                '''
-            }
-        }
-
         stage('Construir y desplegar') {
             steps {
                 dir('quellkasten-project') {
                     sh '''
-                        echo "Construyendo la imagen docker del web-portfolio..."
-                        docker compose -f docker-compose-web-portfolio.yml build web-portfolio
+                        echo "Construyendo la imagen docker..."
+                        docker compose -f docker-compose.github.yml build web-portfolio
 
                         echo "Eliminando contenedor existente si existe..."
-                        docker rm -f web-portfolio-service || echo "No existía el contenedor web-portfolio-service"
+                        docker rm -f web-porfolio-service || echo "No existía el contenedor web-porfolio-service"
 
-                        echo "Levantando contenedor web-portfolio en la red quellkasten_web..."
-                        docker compose -f docker-compose-web-portfolio.yml up -d web-portfolio
+                        echo "Reiniciando el contenedor..."
+                        docker compose -f docker-compose.github.yml up -d web-portfolio
                     '''
                 }
             }
