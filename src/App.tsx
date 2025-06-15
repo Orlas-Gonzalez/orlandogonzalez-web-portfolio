@@ -28,6 +28,9 @@ function App() {
       <p className="read-the-docs">
         Esto es una prueba de Orlando
       </p>
+      <p className="read-the-docs">
+        Este es el primer gran paso para poder comenzar en el mundo de la programación.
+      </p>
     </>
   )
 }
