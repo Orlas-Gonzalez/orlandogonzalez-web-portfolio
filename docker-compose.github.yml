@@ -3,11 +3,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: web-porfolio-service
+    container_name: web-portfolio-service
     restart: unless-stopped
     networks:
-      - quellkasten_web
+      - quellkasten-project_quellkasten_web
 
 networks:
-  quellkasten_web:
+  quellkasten-project_quellkasten_web:
     external: true
