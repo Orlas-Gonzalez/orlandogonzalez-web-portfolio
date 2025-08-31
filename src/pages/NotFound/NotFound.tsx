@@ -2,7 +2,7 @@ import styles from "./NotFound.module.css";
 import { Container } from "react-bootstrap";
 import bannerImage from "../../assets/images/icon-not-found.png";
 import Header from "../../components/layout/Header/Header";
-import { replace, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ROUTER_LIST } from "../../routes/treeRoutes/RouterList";
 import clsx from "clsx";
 
