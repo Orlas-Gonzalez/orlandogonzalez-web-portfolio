@@ -1,6 +1,6 @@
 import { BrowserRouter, Route } from "react-router-dom";
 import { ROUTER_LIST } from "./treeRoutes/RouterList";
-import NotFoundMiddleware from "./treeRoutes/notFoundMiddleware";
+import NotFoundMiddleware from "./treeRoutes/NotFoundMiddleware";
 import { Toaster } from "react-hot-toast";
 import Home from "../pages/Home";
 
