@@ -1,0 +1,83 @@
+.containerHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.containerBanner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--font-color-primary);
+  text-align: center;
+  height: calc(100vh - 64px);
+}
+
+.containerBanner img {
+  width: 300px;
+  height: auto;
+}
+
+.containerBanner h1 {
+  color: inherit;
+  font-family: "Bungee", "Arial", "Aptos";
+  padding-top: 1.5rem;
+  font-size: 1.4rem;
+}
+
+.containerBanner p {
+  font-family: "Roboto", "Arial", "Aptos";
+  font-size: 1.25rem;
+}
+
+.containerBanner p:nth-of-type(1) span {
+  font-weight: bold;
+}
+
+.containerBanner p:nth-of-type(2) span {
+  color: var(--color-secondary);
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.containerBanner p:nth-of-type(2) span:hover {
+  color: var(--color-secondary);
+}
+
+/* >> Tablet View */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .containerBanner img {
+    width: 400px;
+  }
+
+  .containerBanner h1 {
+    font-size: 2.25rem;
+  }
+
+  .containerBanner p {
+    font-size: 1.7rem;
+  }
+}
+
+/* >> Desktop View */
+@media (min-width: 1200px) {
+  .containerBanner img {
+    width: 500px;
+  }
+
+  .containerBanner {
+    flex-direction: row;
+    gap: 30px;
+  }
+
+  .containerBanner h1 {
+    font-size: 2.25rem;
+  }
+
+  .containerBanner p {
+    font-size: 1.7rem;
+  }
+}

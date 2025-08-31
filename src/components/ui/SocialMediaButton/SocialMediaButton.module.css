@@ -1,0 +1,33 @@
+.buttonSM {
+  font-size: 1.5rem !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 5px !important;
+  background-color: var(--background-color-social-media) !important;
+  border: var(--border-color-social-media) !important;
+  cursor: pointer !important;
+  color: var(--color-primary) !important;
+}
+
+.buttonSM:hover {
+  color: var(--color-backup-one) !important;
+}
+
+.buttonSM:active {
+  color: var(--color-primary) !important;
+}
+
+/* >> Tablet View */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .buttonSM {
+    font-size: 2rem !important;
+  }
+}
+
+/* >> Desktop View */
+@media (min-width: 1200px) {
+  .buttonSM {
+    font-size: 2rem !important;
+  }
+}

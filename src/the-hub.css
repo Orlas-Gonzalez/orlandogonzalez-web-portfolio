@@ -1,0 +1,20 @@
+:root {
+  --color-primary: #fdf0d5;
+  --color-secondary: #f57158;
+  --color-backup-one: #ff6b35;
+  --font-color-primary: rgba(72, 72, 72, 0.8);
+  --border-color-social-media: 3px solid #666461;
+  --border-color-toast: 2px solid var(--font-color-primary);
+  --background-color-social-media: rgba(102, 100, 97, 0.7);
+  --background-image-primary: url("./assets/textures/main-texture.png");
+}
+
+body {
+  background-color: var(--color-primary);
+  background-image: var(--background-image-primary);
+}
+
+.toastDefault {
+  background-color: var(--color-primary);
+  border: var(--border-color-toast);
+}
