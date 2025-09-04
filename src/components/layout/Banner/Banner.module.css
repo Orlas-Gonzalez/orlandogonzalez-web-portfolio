@@ -85,3 +85,10 @@
     font-size: 1rem;
   }
 }
+
+/* >> Landscape View */
+@media screen and (orientation: landscape) and (min-width: 768px) and (max-width: 1199px) {
+  .containerBanner {
+    height: calc(100vh + 326px);
+  }
+}
