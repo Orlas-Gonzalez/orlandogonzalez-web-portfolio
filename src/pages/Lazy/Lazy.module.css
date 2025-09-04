@@ -36,17 +36,6 @@
   font-weight: bold;
 }
 
-.containerBanner p:nth-of-type(2) span {
-  color: var(--color-secondary);
-  text-decoration: underline;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.containerBanner p:nth-of-type(2) span:hover {
-  color: var(--color-secondary);
-}
-
 /* >> Tablet View */
 @media (min-width: 768px) and (max-width: 1199px) {
   .containerBanner img {
